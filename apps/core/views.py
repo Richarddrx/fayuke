@@ -11,7 +11,7 @@ def run_migrations(request):
         return HttpResponse('Unauthorized', status=401)
     out = StringIO()
     try:
-        call_command('migrate', stdout=out, noinput=True)
+        call_command('migrate', interactive=False, stdout=out)
     except Exception as e:
         return HttpResponse(f'<pre>Error: {e}</pre>', status=500)
     return HttpResponse(f'<pre>{out.getvalue()}</pre>')
