@@ -82,7 +82,7 @@ def run_migrations(request):
                     {'title': 'iPhone 15 Pro Max 256G 黑色', 'description': '2025年购入，95成新，配件齐全。可巴黎面交。', 'price': 899, 'cat': 'electronics', 'city': '巴黎', 'urgent': True},
                     {'title': '宜家餐桌椅套装 9成新', 'description': '实木餐桌+4把椅子，使用一年，搬家出售。自取（巴黎13区）。', 'price': 120, 'cat': 'furniture', 'city': '巴黎'},
                     {'title': '13区近地铁 温馨一室一厅 整租', 'description': '35平，3楼带电梯，独立厨房卫生间。月租850欧。', 'price': 850, 'cat': 'whole-rental', 'city': '巴黎', 'urgent': True},
-                    {'title': '94省大房间合租 近Creteil', 'description': '20平大房间，家具齐全，网络水电全包。月租500欧。', 'price': 500, 'cat': 'shared-rental', 'city': 'Créteil'},
+                    {'title': '94省大房间合租 近Créteil', 'description': '20平大房间，家具齐全，网络水电全包。月租500欧。', 'price': 500, 'cat': 'shared-rental', 'city': 'Créteil'},
                     {'title': '中餐馆招聘洗碗工/帮厨', 'description': '巴黎13区中餐馆，待遇优，包餐。需有居留，经验不限。', 'price': None, 'cat': 'full-time', 'city': '巴黎'},
                     {'title': '宝马X3 2019 柴油 6万公里', 'description': '一手车主，定期保养，车况很好。CT2026年6月。', 'price': 18500, 'cat': 'used-cars', 'city': '巴黎', 'urgent': True},
                     {'title': '搬家服务 专业团队', 'description': '巴黎及周边搬家服务，2人团队+货车。按小时收费。', 'price': None, 'cat': 'moving', 'city': '巴黎'},
