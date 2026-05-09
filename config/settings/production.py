@@ -1,7 +1,16 @@
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='.fayuke.fr,').split(',')
+
+ALLOWED_HOSTS = [
+    '.vercel.app',
+    '.europe58.com',
+    'europe58.com',
+    '127.0.0.1',
+    'localhost',
+]
+
+SECRET_KEY = config('SECRET_KEY')
 
 DATABASES = {
     'default': {
@@ -9,7 +18,7 @@ DATABASES = {
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='localhost'),
+        'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', default='5432'),
     }
 }
@@ -17,14 +26,18 @@ DATABASES = {
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
 
-CSRF_TRUSTED_ORIGINS = ['https://' + host for host in ALLOWED_HOSTS if host]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.vercel.app',
+    'https://europe58.com',
+    'https://www.europe58.com',
+]
 
-STATIC_ROOT = '/var/www/fayuke/static'
-MEDIA_ROOT = '/var/www/fayuke/media'
+# Static files — collected during Vercel build
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files — use external storage in production
+MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGGING = {
     'version': 1,

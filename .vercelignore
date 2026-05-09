@@ -1,0 +1,7 @@
+.git
+.env
+.env.example
+scripts/
+*.md
+__pycache__/
+*.pyc

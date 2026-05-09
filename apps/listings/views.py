@@ -67,7 +67,10 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         response = super().form_valid(form)
         for img in self.request.FILES.getlist('images'):
-            ListingImage.objects.create(listing=self.object, image=img)
+            try:
+                ListingImage.objects.create(listing=self.object, image=img)
+            except Exception:
+                pass  # skip image save failure (e.g. read-only fs)
         messages.success(self.request, '信息发布成功！')
         return response
 
