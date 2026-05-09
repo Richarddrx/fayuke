@@ -13,7 +13,6 @@ def run_migrations(request):
     out = StringIO()
     try:
         if action == 'seed':
-            from apps.listings.models import Category
             if Category.objects.count() == 0:
                 cat_tree = [
                     {'name': 'Occasions', 'slug': 'second-hand', 'icon': '🔄', 'sort_order': 1, 'children': [
@@ -72,7 +71,6 @@ def run_migrations(request):
                 out.write('Admin user already exists\n')
 
             # Seed demo listings
-            from apps.listings.models import Listing
             from datetime import timedelta
             from django.utils.timezone import now
             import random
