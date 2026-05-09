@@ -104,6 +104,9 @@ def run_migrations(request):
                 out.write(f'Created {len(demo)} demo listings\n')
             else:
                 out.write('Demo listings already exist, skipping\n')
+            # Fix data
+            Listing.objects.filter(title__icontains='Creteil').update(title='94省大房间合租 近Créteil')
+            out.write('Fixed Créteil title\n')
         else:
             call_command('migrate', interactive=False, stdout=out)
     except Exception as e:
