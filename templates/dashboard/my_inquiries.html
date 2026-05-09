@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}收到的咨询 - 法友客{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h5 class="fw-bold mb-3">💬 收到的咨询</h5>
+    <div class="card p-3">
+        {% for inquiry in object_list %}
+        <div class="border-bottom py-2 {% if not inquiry.is_read %}fw-bold{% endif %}">
+            <div class="d-flex justify-content-between">
+                <span>{{ inquiry.sender_name }}</span>
+                <small class="text-muted">{{ inquiry.created_at|date:"Y-m-d H:i" }}</small>
+            </div>
+            <small>关于：<a href="{% url 'listings:detail' inquiry.listing.slug %}">{{ inquiry.listing.title }}</a></small>
+            <p class="mb-1 mt-1 small">{{ inquiry.message|truncatechars:100 }}</p>
+            <small class="text-muted">{{ inquiry.sender_email }}</small>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <i class="bi bi-chat"></i>
+            <p>暂无咨询</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

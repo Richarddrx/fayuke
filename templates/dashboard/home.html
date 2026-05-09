@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}我的中心 - 法友客{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h4 class="fw-bold mb-4">👤 我的中心</h4>
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <div class="display-6 fw-bold text-primary">{{ listings_count }}</div>
+                <div class="text-muted">全部信息</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <div class="display-6 fw-bold text-success">{{ active_count }}</div>
+                <div class="text-muted">已发布</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <div class="display-6 fw-bold text-warning">{{ inquiries_count }}</div>
+                <div class="text-muted">未读咨询</div>
+            </div>
+        </div>
+    </div>
+    <div class="list-group">
+        <a href="{% url 'dashboard:my_listings' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            我的信息 <i class="bi bi-chevron-right"></i>
+        </a>
+        <a href="{% url 'dashboard:my_inquiries' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            收到的咨询 {% if inquiries_count %}<span class="badge bg-danger">{{ inquiries_count }}</span>{% endif %} <i class="bi bi-chevron-right"></i>
+        </a>
+        <a href="{% url 'dashboard:my_favorites' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            我的收藏 <i class="bi bi-chevron-right"></i>
+        </a>
+        <a href="{% url 'listings:create' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-primary fw-bold">
+            📝 发布新信息 <i class="bi bi-plus-circle"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}注册 - 法友客{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card p-4">
+                <h4 class="fw-bold text-center mb-4">注册</h4>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary w-100">注册</button>
+                </form>
+                <div class="text-center mt-3">
+                    <small>已有账号？<a href="{% url 'accounts:login' %}">登录</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

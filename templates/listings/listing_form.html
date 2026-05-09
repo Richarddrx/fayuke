@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}{% if listing %}编辑信息{% else %}发布信息{% endif %} - 法友客{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card p-4">
+                <h4 class="fw-bold mb-4">
+                    {% if listing %}✏️ 编辑信息{% else %}📝 发布新信息{% endif %}
+                </h4>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                        {% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
+                    </div>
+                    {% endfor %}
+                    <div class="mb-3">
+                        <label class="form-label fw-medium">图片（可选，最多10张）</label>
+                        <input type="file" name="images" multiple accept="image/*" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        {% if listing %}保存修改{% else %}发布信息{% endif %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

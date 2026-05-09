@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}确认删除 - 法友客{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 text-center">
+                <h4 class="fw-bold text-danger">确认删除</h4>
+                <p>确定要删除 "{{ object.title }}" 吗？此操作不可撤销。</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">确认删除</button>
+                    <a href="{% url 'listings:detail' object.slug %}" class="btn btn-outline-secondary">取消</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

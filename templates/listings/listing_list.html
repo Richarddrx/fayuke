@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% if current_category %}{{ current_category.name }} - {% endif %}
+{% if search_query %}搜索: {{ search_query }} - {% endif %}
+法友客
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            {% if current_category %}
+            <li class="breadcrumb-item active">{{ current_category.name }}</li>
+            {% elif search_query %}
+            <li class="breadcrumb-item active">搜索: {{ search_query }}</li>
+            {% else %}
+            <li class="breadcrumb-item active">所有信息</li>
+            {% endif %}
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card p-3 mb-3">
+                <h6 class="fw-bold">分类</h6>
+                {% for cat in categories %}
+                <a href="{% url 'listings:category' cat.slug %}" class="d-block py-1 {% if current_category == cat %}fw-bold text-primary{% endif %}">
+                    {{ cat.icon }} {{ cat.name }}
+                </a>
+                {% endfor %}
+                <hr>
+                <h6 class="fw-bold">城市</h6>
+                <a href="?{% if search_query %}q={{ search_query }}&{% endif %}" class="d-block py-1 {% if not current_city %}fw-bold{% endif %}">全部</a>
+                {% for city in cities %}
+                <a href="?city={{ city }}{% if search_query %}&q={{ search_query }}{% endif %}" class="d-block py-1 {% if current_city == city %}fw-bold{% endif %}">{{ city }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">
+                    {% if search_query %}关于 "{{ search_query }}" 的结果{% endif %}
+                    <small class="text-muted">共 {{ page_obj.paginator.count }} 条</small>
+                </h5>
+                <div class="btn-group btn-group-sm">
+                    <a href="?sort=-created_at{% if current_city %}&city={{ current_city }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" class="btn btn-outline-secondary">最新</a>
+                    <a href="?sort=price{% if current_city %}&city={{ current_city }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" class="btn btn-outline-secondary">价格</a>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                {% for listing in object_list %}
+                <div class="col-6 col-lg-4">
+                    <div class="card listing-card h-100">
+                        {% if listing.images.first %}
+                        <img src="{{ listing.images.first.image.url }}" class="card-img-top" alt="{{ listing.title }}">
+                        {% else %}
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center text-muted" style="height:180px;">
+                            <i class="bi bi-image" style="font-size:2rem;"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body p-3">
+                            <small class="text-muted">{{ listing.category.name }}</small>
+                            <h6 class="mt-1 mb-1">{{ listing.title|truncatechars:20 }}</h6>
+                            {% if listing.price %}
+                            <div class="price-tag">{{ listing.price }}€</div>
+                            {% else %}
+                            <div class="price-tag text-muted">面议</div>
+                            {% endif %}
+                            <small class="text-muted">{{ listing.city }} · {{ listing.created_at|date:"m-d" }}</small>
+                        </div>
+                        <a href="{% url 'listings:detail' listing.slug %}" class="stretched-link"></a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="empty-state">
+                    <i class="bi bi-inbox"></i>
+                    <p>暂无信息</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if page_obj.paginator.num_pages > 1 %}
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if current_city %}&city={{ current_city }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}">上一页</a></li>
+                    {% endif %}
+                    <li class="page-item active"><span class="page-link">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span></li>
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if current_city %}&city={{ current_city }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}">下一页</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
