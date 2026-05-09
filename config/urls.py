@@ -7,6 +7,7 @@ from apps.core import views as core_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', core_views.home, name='home'),
+    path('_migrate/', core_views.run_migrations, name='run_migrations'),
     path('listings/', include('apps.listings.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
     path('accounts/', include('apps.accounts.urls')),
