@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static core_extras %}
 {% block title %}{{ listing.title }} - europe58{% endblock %}
 
 {% block content %}
@@ -34,7 +34,7 @@
                     {% endif %}
                 </div>
                 {% else %}
-                <img src="https://picsum.photos/seed/{{ listing.id }}/800/450" class="w-100" alt="{{ listing.title }}" style="max-height:450px;object-fit:cover;background:#f8fafc;">
+                <img src="{{ category_images|dictkey:listing.category.slug }}" class="w-100" alt="{{ listing.title }}" style="max-height:450px;object-fit:cover;background:#f8fafc;">
                 {% endif %}
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start gap-3">
