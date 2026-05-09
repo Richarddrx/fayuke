@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{{ listing.title }} - 法友客{% endblock %}
+{% block title %}{{ listing.title }} - europe58{% endblock %}
 
 {% block content %}
 <div class="container my-4">
@@ -14,71 +14,85 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card overflow-hidden">
                 {% if listing.images.all %}
                 <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         {% for img in listing.images.all %}
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img src="{{ img.image.url }}" class="d-block w-100" alt="{{ listing.title }}" style="max-height:450px;object-fit:contain;background:#f0f0f0;">
+                            <img src="{{ img.image.url }}" class="d-block w-100" alt="{{ listing.title }}" style="max-height:450px;object-fit:contain;background:#f8fafc;">
                         </div>
                         {% endfor %}
                     </div>
                     {% if listing.images.count > 1 %}
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon bg-dark rounded-circle"></span>
+                        <span class="carousel-control-prev-icon bg-dark bg-opacity-25 rounded-circle p-3"></span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next">
-                        <span class="carousel-control-next-icon bg-dark rounded-circle"></span>
+                        <span class="carousel-control-next-icon bg-dark bg-opacity-25 rounded-circle p-3"></span>
                     </button>
                     {% endif %}
                 </div>
                 {% else %}
-                <div class="bg-light d-flex align-items-center justify-content-center" style="height:300px;">
-                    <i class="bi bi-image text-muted" style="font-size:4rem;"></i>
-                </div>
+                <div class="detail-image-placeholder">{{ listing.category.icon }}</div>
                 {% endif %}
                 <div class="card-body p-4">
-                    <div class="d-flex justify-content-between align-items-start">
+                    <div class="d-flex justify-content-between align-items-start gap-3">
                         <div>
-                            <h4 class="fw-bold">{{ listing.title }}</h4>
-                            {% if listing.is_urgent %}<span class="urgent-badge">置顶</span>{% endif %}
+                            <h4 class="fw-bold mb-2">{{ listing.title }}</h4>
+                            <div class="d-flex gap-2 align-items-center">
+                                <span class="category-badge">{{ listing.category.name }}</span>
+                                {% if listing.is_urgent %}<span class="urgent-badge">置顶</span>{% endif %}
+                            </div>
                         </div>
                         {% if listing.price %}
-                        <div class="price-tag" style="font-size:1.5rem;">{{ listing.price }}€</div>
+                        <div style="font-size:1.6rem;font-weight:800;color:var(--accent);white-space:nowrap;">{{ listing.price }} €</div>
                         {% endif %}
                     </div>
-                    {% if listing.price_negotiable %}<span class="badge bg-warning">价格可议</span>{% endif %}
-                    <hr>
-                    <div class="mb-3 text-muted small">
-                        <i class="bi bi-eye"></i> {{ listing.views_count }} 次浏览 ·
-                        <i class="bi bi-clock"></i> {{ listing.created_at|date:"Y-m-d H:i" }} ·
-                        <i class="bi bi-geo-alt"></i> {{ listing.city }}
+                    {% if listing.price_negotiable %}<span class="badge bg-warning bg-opacity-25 text-warning-emphasis mt-2" style="font-weight:500;">价格可议</span>{% endif %}
+                    <hr class="my-3">
+                    <div class="d-flex gap-3 text-muted small mb-3">
+                        <span><i class="bi bi-eye"></i> {{ listing.views_count }} 次浏览</span>
+                        <span><i class="bi bi-clock"></i> {{ listing.created_at|date:"Y-m-d H:i" }}</span>
+                        <span><i class="bi bi-geo-alt"></i> {{ listing.city }}</span>
                     </div>
-                    <div>{{ listing.description|linebreaks }}</div>
+                    <div style="line-height:1.8;color:#475569;">{{ listing.description|linebreaks }}</div>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card p-4 mb-3">
-                <h6 class="fw-bold">📞 联系方式</h6>
+            <div class="card p-4 contact-card">
+                <h6 class="mb-0">联系方式</h6>
                 <hr>
                 {% if listing.contact_phone %}
-                <div class="mb-2"><i class="bi bi-telephone"></i> <a href="tel:{{ listing.contact_phone }}">{{ listing.contact_phone }}</a></div>
+                <div class="mb-3">
+                    <div class="text-muted small mb-1"><i class="bi bi-telephone"></i> 电话</div>
+                    <a href="tel:{{ listing.contact_phone }}" style="font-size:1.1rem;font-weight:600;color:var(--primary);">{{ listing.contact_phone }}</a>
+                </div>
                 {% endif %}
                 {% if listing.contact_wechat %}
-                <div class="mb-2"><i class="bi bi-chat"></i> 微信：{{ listing.contact_wechat }}</div>
+                <div class="mb-3">
+                    <div class="text-muted small mb-1"><i class="bi bi-chat"></i> 微信</div>
+                    <div style="font-size:1rem;font-weight:500;">{{ listing.contact_wechat }}</div>
+                </div>
                 {% endif %}
                 {% if listing.contact_email %}
-                <div class="mb-2"><i class="bi bi-envelope"></i> {{ listing.contact_email }}</div>
+                <div class="mb-3">
+                    <div class="text-muted small mb-1"><i class="bi bi-envelope"></i> 邮箱</div>
+                    <div>{{ listing.contact_email }}</div>
+                </div>
                 {% endif %}
-                <div class="text-muted small">发布者：{{ listing.user.username }}</div>
+                <hr>
+                <div class="text-muted small d-flex align-items-center gap-2">
+                    <span class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex align-items-center justify-content-center" style="width:32px;height:32px;font-weight:600;">{{ listing.user.username|first|upper }}</span>
+                    {{ listing.user.username }}
+                </div>
             </div>
 
             {% if user == listing.user %}
-            <div class="d-grid gap-2">
-                <a href="{% url 'listings:edit' listing.slug %}" class="btn btn-outline-primary">✏️ 编辑</a>
+            <div class="d-grid gap-2 mt-3">
+                <a href="{% url 'listings:edit' listing.slug %}" class="btn btn-outline-primary">✏️ 编辑信息</a>
                 <a href="{% url 'listings:delete' listing.slug %}" class="btn btn-outline-danger">🗑️ 删除</a>
             </div>
             {% endif %}

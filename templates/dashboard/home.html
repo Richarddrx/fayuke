@@ -1,41 +1,46 @@
 {% extends 'base.html' %}
-{% block title %}我的中心 - 法友客{% endblock %}
+{% block title %}我的中心 - europe58{% endblock %}
 
 {% block content %}
 <div class="container my-4">
-    <h4 class="fw-bold mb-4">👤 我的中心</h4>
+    <h4 class="fw-bold mb-4">我的中心</h4>
     <div class="row g-3 mb-4">
         <div class="col-md-4">
-            <div class="card p-3 text-center">
-                <div class="display-6 fw-bold text-primary">{{ listings_count }}</div>
-                <div class="text-muted">全部信息</div>
+            <div class="card p-3 text-center" style="border-left:4px solid var(--primary);">
+                <div class="display-6 fw-bold" style="color:var(--primary);">{{ listings_count }}</div>
+                <div class="text-muted small">全部信息</div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card p-3 text-center">
-                <div class="display-6 fw-bold text-success">{{ active_count }}</div>
-                <div class="text-muted">已发布</div>
+            <div class="card p-3 text-center" style="border-left:4px solid #16a34a;">
+                <div class="display-6 fw-bold" style="color:#16a34a;">{{ active_count }}</div>
+                <div class="text-muted small">已发布</div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card p-3 text-center">
-                <div class="display-6 fw-bold text-warning">{{ inquiries_count }}</div>
-                <div class="text-muted">未读咨询</div>
+            <div class="card p-3 text-center" style="border-left:4px solid #ca8a04;">
+                <div class="display-6 fw-bold" style="color:#ca8a04;">{{ inquiries_count }}</div>
+                <div class="text-muted small">未读咨询</div>
             </div>
         </div>
     </div>
-    <div class="list-group">
-        <a href="{% url 'dashboard:my_listings' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            我的信息 <i class="bi bi-chevron-right"></i>
+    <div class="list-group rounded-3 overflow-hidden">
+        <a href="{% url 'dashboard:my_listings' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
+            <span><i class="bi bi-list-ul me-2" style="color:var(--primary);"></i> 我的信息</span>
+            <i class="bi bi-chevron-right text-muted"></i>
         </a>
-        <a href="{% url 'dashboard:my_inquiries' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            收到的咨询 {% if inquiries_count %}<span class="badge bg-danger">{{ inquiries_count }}</span>{% endif %} <i class="bi bi-chevron-right"></i>
+        <a href="{% url 'dashboard:my_inquiries' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
+            <span><i class="bi bi-chat-dots me-2" style="color:#16a34a;"></i> 收到的咨询</span>
+            {% if inquiries_count %}<span class="badge bg-danger rounded-pill">{{ inquiries_count }}</span>{% endif %}
+            <i class="bi bi-chevron-right text-muted"></i>
         </a>
-        <a href="{% url 'dashboard:my_favorites' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            我的收藏 <i class="bi bi-chevron-right"></i>
+        <a href="{% url 'dashboard:my_favorites' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
+            <span><i class="bi bi-heart me-2" style="color:#dc2626;"></i> 我的收藏</span>
+            <i class="bi bi-chevron-right text-muted"></i>
         </a>
-        <a href="{% url 'listings:create' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-primary fw-bold">
-            📝 发布新信息 <i class="bi bi-plus-circle"></i>
+        <a href="{% url 'listings:create' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3" style="background:#f0f4ff;font-weight:600;color:var(--primary);">
+            <span><i class="bi bi-plus-circle me-2"></i> 发布新信息</span>
+            <i class="bi bi-arrow-right"></i>
         </a>
     </div>
 </div>
