@@ -25,7 +25,7 @@ CATEGORY_IMAGES = {
     'food': 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop',
     'other-services': 'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=400&h=300&fit=crop',
     'auto': 'https://images.unsplash.com/photo-1530130481716-16eac77cb82a?w=400&h=300&fit=crop',
-    'used-cars': 'https://images.unsplash.com/photo-1530130481716-16eac77cb82a?w=400&h=300&fit=crop',
+    'used-cars': 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
     'auto-parts': 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop',
     'driving-school': 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop',
     'social': 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop',
