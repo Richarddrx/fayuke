@@ -34,7 +34,7 @@
                     {% endif %}
                 </div>
                 {% else %}
-                <div class="detail-image-placeholder">{{ listing.category.icon }}</div>
+                <img src="https://picsum.photos/seed/{{ listing.id }}/800/450" class="w-100" alt="{{ listing.title }}" style="max-height:450px;object-fit:cover;background:#f8fafc;">
                 {% endif %}
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start gap-3">
