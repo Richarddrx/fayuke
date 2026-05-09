@@ -6,7 +6,7 @@
 <div class="hero-section">
     <div class="container text-center">
         <h1 class="fw-bold mb-3">法国华人分类信息</h1>
-        <p class="lead mb-4" style="font-size:1.1rem;">二手闲置 · 房屋租贷 · 求职招聘 · 生活服务 · 车辆专区 · 同城交友</p>
+        <p class="lead mb-4" style="font-size:1.1rem;">二手闲置 · 房屋租赁 · 求职招聘 · 生活服务 · 车辆专区 · 同城交友</p>
         <form class="row g-2 justify-content-center" action="{% url 'listings:search' %}" method="GET">
             <div class="col-sm-7 col-md-5">
                 <input type="text" name="q" class="form-control" placeholder="搜索二手、租房、工作..." value="{{ request.GET.q }}">

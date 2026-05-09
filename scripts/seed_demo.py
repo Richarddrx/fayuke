@@ -19,7 +19,7 @@ demo_listings = [
     {'title': '宜家餐桌椅套装 9成新', 'description': '实木餐桌+4把椅子，使用一年，搬家出售。自取（巴黎13区）。尺寸140x80cm。', 'price': 120, 'category_slug': 'furniture', 'city': '巴黎'},
     {'title': 'Chanel 经典款 成色极新', 'description': '2024年购于巴黎老佛爷，仅使用过3次，有原盒和票据。可验货。', 'price': 2800, 'category_slug': 'clothing', 'city': '巴黎'},
     {'title': '13区近地铁 温馨一室一厅 整租', 'description': '35平，3楼带电梯，独立厨房卫生间。月租850欧含charge。即日起租。近7号线Tolbiac。', 'price': 850, 'category_slug': 'whole-rental', 'city': '巴黎', 'is_urgent': True},
-    {'title': '94省大房间合租 近Creteil', 'description': '20平大房间，家具齐全，网络水电全包。室友都是中国留学生。月租500欧。', 'price': 500, 'category_slug': 'shared-rental', 'city': 'Créteil'},
+    {'title': '94省大房间合租 近Créteil', 'description': '20平大房间，家具齐全，网络水电全包。室友都是中国留学生。月租500欧。', 'price': 500, 'category_slug': 'shared-rental', 'city': 'Créteil'},
     {'title': '中餐馆招聘洗碗工/帮厨', 'description': '巴黎13区中餐馆，待遇优，包餐。需有居留，经验不限。周一至周六，每天8小时。', 'price': None, 'category_slug': 'full-time', 'city': '巴黎'},
     {'title': '周末中文家教 招聘老师', 'description': '为两个华人孩子（8岁和10岁）辅导中文和数学。周六下午，每小时25欧。需要中文标准。', 'price': None, 'category_slug': 'part-time', 'city': '巴黎'},
     {'title': '宝马X3 2019 柴油 6万公里', 'description': '一手车主，定期保养，车况很好。CT2026年6月。价格可小刀。巴黎可看车。', 'price': 18500, 'category_slug': 'used-cars', 'city': '巴黎', 'is_urgent': True},
