@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
-{% block title %}登录 - europe58{% endblock %}
+{% block title %}Connexion - europe58{% endblock %}
 
 {% block content %}
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card p-4">
-                <h4 class="fw-bold text-center mb-4">登录</h4>
+                <h4 class="fw-bold text-center mb-4">Connexion</h4>
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label class="form-label fw-medium" style="font-size:0.9rem;">用户名</label>
-                        <input type="text" name="username" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="输入用户名">
+                        <label class="form-label fw-medium" style="font-size:0.9rem;">Nom d'utilisateur</label>
+                        <input type="text" name="username" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="Entrez votre nom d'utilisateur">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-medium" style="font-size:0.9rem;">密码</label>
-                        <input type="password" name="password" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="输入密码">
+                        <label class="form-label fw-medium" style="font-size:0.9rem;">Mot de passe</label>
+                        <input type="password" name="password" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="Entrez votre mot de passe">
                     </div>
                     {% if form.errors %}
-                    <div class="alert alert-danger py-2 small">用户名或密码错误</div>
+                    <div class="alert alert-danger py-2 small">Nom d'utilisateur ou mot de passe incorrect</div>
                     {% endif %}
-                    <button type="submit" class="btn btn-primary w-100" style="padding:12px;">登录</button>
+                    <button type="submit" class="btn btn-primary w-100" style="padding:12px;">Se connecter</button>
                 </form>
                 <p class="text-center mt-3 mb-0 small text-muted">
-                    还没有账号？<a href="{% url 'accounts:register' %}" style="color:var(--primary);font-weight:600;">立即注册</a>
+                    Pas encore de compte ? <a href="{% url 'accounts:register' %}" style="color:var(--primary);font-weight:600;">S'inscrire</a>
                 </p>
             </div>
         </div>

@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
-{% block title %}注册 - europe58{% endblock %}
+{% block title %}Inscription - europe58{% endblock %}
 
 {% block content %}
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card p-4">
-                <h4 class="fw-bold text-center mb-4">注册新账号</h4>
+                <h4 class="fw-bold text-center mb-4">Créer un compte</h4>
                 <form method="post">
                     {% csrf_token %}
                     {% for field in form %}
                     <div class="mb-3">
-                        <label class="form-label fw-medium" style="font-size:0.9rem;">{{ field.label }}</label>
-                        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="请输入{{ field.label }}">
+                        <label class="form-label fw-medium" style="font-size:0.9rem;">
+                            {% if field.name == 'username' %}Nom d'utilisateur
+                            {% elif field.name == 'email' %}Email
+                            {% elif field.name == 'password1' %}Mot de passe
+                            {% elif field.name == 'password2' %}Confirmer le mot de passe
+                            {% else %}{{ field.label }}{% endif %}
+                        </label>
+                        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="{% if field.name == 'username' %}Choisissez un nom d'utilisateur{% elif field.name == 'email' %}votre@email.com{% elif field.name == 'password1' %}Créez un mot de passe{% elif field.name == 'password2' %}Confirmez le mot de passe{% endif %}">
                         {% for error in field.errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary w-100" style="padding:12px;">注册</button>
+                    <button type="submit" class="btn btn-primary w-100" style="padding:12px;">S'inscrire</button>
                 </form>
                 <p class="text-center mt-3 mb-0 small text-muted">
-                    已有账号？<a href="{% url 'accounts:login' %}" style="color:var(--primary);font-weight:600;">立即登录</a>
+                    Déjà inscrit ? <a href="{% url 'accounts:login' %}" style="color:var(--primary);font-weight:600;">Se connecter</a>
                 </p>
             </div>
         </div>

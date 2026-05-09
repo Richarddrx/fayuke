@@ -5,5 +5,5 @@ from .models import User
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     fieldsets = BaseUserAdmin.fieldsets + (
-        ('联系方式', {'fields': ('phone', 'wechat_id', 'email_verified')}),
+        ('Contact', {'fields': ('phone', 'wechat_id', 'email_verified')}),
     )

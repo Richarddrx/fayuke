@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}收到的咨询 - europe58{% endblock %}
+{% block title %}Messages reçus - europe58{% endblock %}
 
 {% block content %}
 <div class="container my-4">
-    <h5 class="fw-bold mb-3">收到的咨询</h5>
+    <h5 class="fw-bold mb-3">Messages reçus</h5>
     <div class="card">
         <div class="p-3">
             {% for inquiry in object_list %}
-            <div class="border-bottom py-3 {% if not inquiry.is_read %}" style="background:#f8fafc;margin:0 -12px;padding:12px !important;border-radius:8px;{% endif %}">
+            <div class="border-bottom py-3" style="{% if not inquiry.is_read %}background:#f8fafc;margin:0 -12px;padding:12px !important;border-radius:8px;{% endif %}">
                 <div class="d-flex justify-content-between">
                     <span class="fw-medium">{{ inquiry.sender_name }}</span>
                     <small class="text-muted">{{ inquiry.created_at|date:"Y-m-d H:i" }}</small>
                 </div>
-                <small>关于：<a href="{% url 'listings:detail' inquiry.listing.slug %}" style="color:var(--primary);">{{ inquiry.listing.title }}</a></small>
+                <small>À propos : <a href="{% url 'listings:detail' inquiry.listing.slug %}" style="color:var(--primary);">{{ inquiry.listing.title }}</a></small>
                 <p class="mb-1 mt-1 small" style="color:#475569;">{{ inquiry.message|truncatechars:100 }}</p>
                 <small class="text-muted">{{ inquiry.sender_email }}</small>
             </div>
             {% empty %}
             <div class="empty-state">
                 <i class="bi bi-chat"></i>
-                <p>暂无咨询</p>
+                <p>Aucun message pour le moment</p>
             </div>
             {% endfor %}
         </div>

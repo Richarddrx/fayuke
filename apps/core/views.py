@@ -16,42 +16,42 @@ def run_migrations(request):
             from apps.listings.models import Category
             if Category.objects.count() == 0:
                 cat_tree = [
-                    {'name': '二手闲置', 'slug': 'second-hand', 'icon': '🔄', 'sort_order': 1, 'children': [
-                        {'name': '电子产品', 'slug': 'electronics', 'icon': '💻'},
-                        {'name': '家具家居', 'slug': 'furniture', 'icon': '🪑'},
-                        {'name': '服装鞋包', 'slug': 'clothing', 'icon': '👗'},
-                        {'name': '母婴用品', 'slug': 'baby', 'icon': '🍼'},
-                        {'name': '书籍文具', 'slug': 'books', 'icon': '📚'},
-                        {'name': '其他二手', 'slug': 'other-secondhand', 'icon': '📦'},
+                    {'name': 'Occasions', 'slug': 'second-hand', 'icon': '🔄', 'sort_order': 1, 'children': [
+                        {'name': 'Électronique', 'slug': 'electronics', 'icon': '💻'},
+                        {'name': 'Meubles & Maison', 'slug': 'furniture', 'icon': '🪑'},
+                        {'name': 'Mode & Accessoires', 'slug': 'clothing', 'icon': '👗'},
+                        {'name': 'Enfants & Bébé', 'slug': 'baby', 'icon': '🍼'},
+                        {'name': 'Livres & Papeterie', 'slug': 'books', 'icon': '📚'},
+                        {'name': 'Autres occasions', 'slug': 'other-secondhand', 'icon': '📦'},
                     ]},
-                    {'name': '房屋租贷', 'slug': 'housing', 'icon': '🏠', 'sort_order': 2, 'children': [
-                        {'name': '整租', 'slug': 'whole-rental', 'icon': '🏡'},
-                        {'name': '合租', 'slug': 'shared-rental', 'icon': '🛏️'},
-                        {'name': '短租', 'slug': 'short-term', 'icon': '🏨'},
-                        {'name': '求租', 'slug': 'looking-for', 'icon': '🔍'},
+                    {'name': 'Immobilier', 'slug': 'housing', 'icon': '🏠', 'sort_order': 2, 'children': [
+                        {'name': 'Location entière', 'slug': 'whole-rental', 'icon': '🏡'},
+                        {'name': 'Colocation', 'slug': 'shared-rental', 'icon': '🛏️'},
+                        {'name': 'Courte durée', 'slug': 'short-term', 'icon': '🏨'},
+                        {'name': 'Recherche logement', 'slug': 'looking-for', 'icon': '🔍'},
                     ]},
-                    {'name': '求职招聘', 'slug': 'jobs', 'icon': '💼', 'sort_order': 3, 'children': [
-                        {'name': '全职', 'slug': 'full-time', 'icon': '👔'},
-                        {'name': '兼职', 'slug': 'part-time', 'icon': '⏰'},
-                        {'name': '实习', 'slug': 'internship', 'icon': '📋'},
-                        {'name': '招聘', 'slug': 'recruiting', 'icon': '📢'},
+                    {'name': 'Emplois', 'slug': 'jobs', 'icon': '💼', 'sort_order': 3, 'children': [
+                        {'name': 'Plein temps', 'slug': 'full-time', 'icon': '👔'},
+                        {'name': 'Temps partiel', 'slug': 'part-time', 'icon': '⏰'},
+                        {'name': 'Stage', 'slug': 'internship', 'icon': '📋'},
+                        {'name': 'Recrutement', 'slug': 'recruiting', 'icon': '📢'},
                     ]},
-                    {'name': '生活服务', 'slug': 'services', 'icon': '🔧', 'sort_order': 4, 'children': [
-                        {'name': '家政清洁', 'slug': 'cleaning', 'icon': '🧹'},
-                        {'name': '搬家货运', 'slug': 'moving', 'icon': '🚛'},
-                        {'name': '美容美发', 'slug': 'beauty', 'icon': '💇'},
-                        {'name': '餐饮外卖', 'slug': 'food', 'icon': '🍜'},
-                        {'name': '其他服务', 'slug': 'other-services', 'icon': '📌'},
+                    {'name': 'Services', 'slug': 'services', 'icon': '🔧', 'sort_order': 4, 'children': [
+                        {'name': 'Ménage & Nettoyage', 'slug': 'cleaning', 'icon': '🧹'},
+                        {'name': 'Déménagement', 'slug': 'moving', 'icon': '🚛'},
+                        {'name': 'Beauté & Coiffure', 'slug': 'beauty', 'icon': '💇'},
+                        {'name': 'Restauration', 'slug': 'food', 'icon': '🍜'},
+                        {'name': 'Autres services', 'slug': 'other-services', 'icon': '📌'},
                     ]},
-                    {'name': '车辆专区', 'slug': 'auto', 'icon': '🚗', 'sort_order': 5, 'children': [
-                        {'name': '二手车', 'slug': 'used-cars', 'icon': '🚙'},
-                        {'name': '车辆配件', 'slug': 'auto-parts', 'icon': '⚙️'},
-                        {'name': '驾校学车', 'slug': 'driving-school', 'icon': '📝'},
+                    {'name': 'Véhicules', 'slug': 'auto', 'icon': '🚗', 'sort_order': 5, 'children': [
+                        {'name': 'Voitures d\'occasion', 'slug': 'used-cars', 'icon': '🚙'},
+                        {'name': 'Pièces auto', 'slug': 'auto-parts', 'icon': '⚙️'},
+                        {'name': 'Auto-école', 'slug': 'driving-school', 'icon': '📝'},
                     ]},
-                    {'name': '同城交友', 'slug': 'social', 'icon': '🤝', 'sort_order': 6, 'children': [
-                        {'name': '活动组织', 'slug': 'events', 'icon': '🎉'},
-                        {'name': '宠物', 'slug': 'pets', 'icon': '🐾'},
-                        {'name': '其他', 'slug': 'other-social', 'icon': '💬'},
+                    {'name': 'Rencontres', 'slug': 'social', 'icon': '🤝', 'sort_order': 6, 'children': [
+                        {'name': 'Événements', 'slug': 'events', 'icon': '🎉'},
+                        {'name': 'Animaux', 'slug': 'pets', 'icon': '🐾'},
+                        {'name': 'Autres', 'slug': 'other-social', 'icon': '💬'},
                     ]},
                 ]
                 for cat_data in cat_tree:
@@ -79,16 +79,16 @@ def run_migrations(request):
             if Listing.objects.count() == 0:
                 slug_to_cat = {c.slug: c for c in Category.objects.all()}
                 demo = [
-                    {'title': 'iPhone 15 Pro Max 256G 黑色', 'description': '2025年购入，95成新，配件齐全。可巴黎面交。', 'price': 899, 'cat': 'electronics', 'city': '巴黎', 'urgent': True},
-                    {'title': '宜家餐桌椅套装 9成新', 'description': '实木餐桌+4把椅子，使用一年，搬家出售。自取（巴黎13区）。', 'price': 120, 'cat': 'furniture', 'city': '巴黎'},
-                    {'title': '13区近地铁 温馨一室一厅 整租', 'description': '35平，3楼带电梯，独立厨房卫生间。月租850欧。', 'price': 850, 'cat': 'whole-rental', 'city': '巴黎', 'urgent': True},
-                    {'title': '94省大房间合租 近Créteil', 'description': '20平大房间，家具齐全，网络水电全包。月租500欧。', 'price': 500, 'cat': 'shared-rental', 'city': 'Créteil'},
-                    {'title': '中餐馆招聘洗碗工/帮厨', 'description': '巴黎13区中餐馆，待遇优，包餐。需有居留，经验不限。', 'price': None, 'cat': 'full-time', 'city': '巴黎'},
-                    {'title': '宝马X3 2019 柴油 6万公里', 'description': '一手车主，定期保养，车况很好。CT2026年6月。', 'price': 18500, 'cat': 'used-cars', 'city': '巴黎', 'urgent': True},
-                    {'title': '搬家服务 专业团队', 'description': '巴黎及周边搬家服务，2人团队+货车。按小时收费。', 'price': None, 'cat': 'moving', 'city': '巴黎'},
-                    {'title': '巴黎华人摄影 约拍服务', 'description': '巴黎专业摄影师，铁塔、卢浮宫等景点跟拍。€120起。', 'price': 120, 'cat': 'other-services', 'city': '巴黎'},
-                    {'title': '小狗求领养 法国斗牛犬', 'description': '2岁法斗，疫苗齐全，性格温顺。因回国无法带走。', 'price': 200, 'cat': 'pets', 'city': '巴黎'},
-                    {'title': '巴黎到里昂 周末拼车', 'description': '每周五下午巴黎出发去里昂，单程25欧/人。', 'price': 25, 'cat': 'other-secondhand', 'city': '巴黎'},
+                    {'title': 'iPhone 15 Pro Max 256G Noir', 'description': 'Acheté en 2025, état neuf (95%), accessoires complets. Remise en main propre à Paris.', 'price': 899, 'cat': 'electronics', 'city': 'Paris', 'urgent': True},
+                    {'title': 'Table IKEA + 4 chaises 9/10', 'description': 'Table en bois massif + 4 chaises, utilisé 1 an, déménagement. À venir chercher (Paris 13e).', 'price': 120, 'cat': 'furniture', 'city': 'Paris'},
+                    {'title': 'Studio meublé Paris 13e près métro', 'description': '35m², 3e étage ascenseur, cuisine équipée. 850€/mois CC.', 'price': 850, 'cat': 'whole-rental', 'city': 'Paris', 'urgent': True},
+                    {'title': 'Grande chambre en coloc près Créteil', 'description': '20m², meublé, charges incluses (wifi/électricité/eau). 500€/mois.', 'price': 500, 'cat': 'shared-rental', 'city': 'Créteil'},
+                    {'title': 'Restaurant chinois cherche plongeur/aide-cuisine', 'description': 'Restaurant Paris 13e, bonne rémunération, repas fourni. Titre de séjour requis, pas d\'expérience nécessaire.', 'price': None, 'cat': 'full-time', 'city': 'Paris'},
+                    {'title': 'BMW X3 2019 Diesel 60 000 km', 'description': 'Première main, entretien régulier, excellent état. CT juin 2026.', 'price': 18500, 'cat': 'used-cars', 'city': 'Paris', 'urgent': True},
+                    {'title': 'Service déménagement équipe pro', 'description': 'Déménagement Paris et banlieue, équipe de 2 + fourgon. Tarif à l\'heure.', 'price': None, 'cat': 'moving', 'city': 'Paris'},
+                    {'title': 'Photographe chinois à Paris', 'description': 'Photographe professionnel à Paris, shooting Tour Eiffel, Louvre... À partir de 120€.', 'price': 120, 'cat': 'other-services', 'city': 'Paris'},
+                    {'title': 'Bouledogue français à donner', 'description': '2 ans, vaccins à jour, caractère doux. Je rentre en Chine, ne peux pas l\'emmener.', 'price': 200, 'cat': 'pets', 'city': 'Paris'},
+                    {'title': 'Covoiturage Paris → Lyon week-end', 'description': 'Départ Paris vendredi après-midi direction Lyon. 25€/personne.', 'price': 25, 'cat': 'other-secondhand', 'city': 'Paris'},
                 ]
                 admin = User.objects.get(username='admin')
                 for item in demo:
@@ -105,8 +105,32 @@ def run_migrations(request):
             else:
                 out.write('Demo listings already exist, skipping\n')
             # Fix data
-            Listing.objects.filter(title__icontains='Creteil').update(title='94省大房间合租 近Créteil')
+            Listing.objects.filter(title__icontains='Creteil').update(title='Grande chambre en coloc près Créteil')
             out.write('Fixed Créteil title\n')
+
+        if action == 'update_fr':
+            name_map = {
+                '二手闲置': 'Occasions', '电子产品': 'Électronique', '家具家居': 'Meubles & Maison',
+                '服装鞋包': 'Mode & Accessoires', '母婴用品': 'Enfants & Bébé', '书籍文具': 'Livres & Papeterie',
+                '其他二手': 'Autres occasions', '房屋租贷': 'Immobilier', '整租': 'Location entière',
+                '合租': 'Colocation', '短租': 'Courte durée', '求租': 'Recherche logement',
+                '求职招聘': 'Emplois', '全职': 'Plein temps', '兼职': 'Temps partiel',
+                '实习': 'Stage', '招聘': 'Recrutement', '生活服务': 'Services',
+                '家政清洁': 'Ménage & Nettoyage', '搬家货运': 'Déménagement',
+                '美容美发': 'Beauté & Coiffure', '餐饮外卖': 'Restauration', '其他服务': 'Autres services',
+                '车辆专区': 'Véhicules', '二手车': "Voitures d'occasion", '车辆配件': 'Pièces auto',
+                '驾校学车': 'Auto-école', '同城交友': 'Rencontres', '活动组织': 'Événements',
+                '宠物': 'Animaux', '其他': 'Autres',
+            }
+            for old_name, new_name in name_map.items():
+                cnt = Category.objects.filter(name=old_name).update(name=new_name)
+                if cnt:
+                    out.write(f'Renamed "{old_name}" → "{new_name}"\n')
+            cnt2 = Listing.objects.filter(city='巴黎').update(city='Paris')
+            if cnt2:
+                out.write(f'Updated {cnt2} listings: 巴黎 → Paris\n')
+            else:
+                out.write('No Chinese city names found\n')
         else:
             call_command('migrate', interactive=False, stdout=out)
     except Exception as e:

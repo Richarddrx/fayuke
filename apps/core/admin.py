@@ -9,7 +9,7 @@ class InquiryAdmin(admin.ModelAdmin):
 
     def mark_as_read(self, request, queryset):
         queryset.update(is_read=True)
-    mark_as_read.short_description = '标记为已读'
+    mark_as_read.short_description = 'Marquer comme lu'
 
 @admin.register(Favorite)
 class FavoriteAdmin(admin.ModelAdmin):

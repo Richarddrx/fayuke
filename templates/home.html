@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load static core_extras %}
-{% block title %}europe58 - 法国华人分类信息平台{% endblock %}
+{% block title %}europe58 - Petites annonces entre Chinois en France{% endblock %}
 
 {% block content %}
 <div class="hero-section">
     <div class="container text-center">
-        <h1 class="fw-bold mb-3">法国华人分类信息</h1>
-        <p class="lead mb-4" style="font-size:1.1rem;">二手闲置 · 房屋租赁 · 求职招聘 · 生活服务 · 车辆专区 · 同城交友</p>
+        <h1 class="fw-bold mb-3">Petites annonces entre Chinois en France</h1>
+        <p class="lead mb-4" style="font-size:1.1rem;">Occasions · Immobilier · Emplois · Services · Véhicules · Rencontres</p>
         <form class="row g-2 justify-content-center" action="{% url 'listings:search' %}" method="GET">
             <div class="col-sm-7 col-md-5">
-                <input type="text" name="q" class="form-control" placeholder="搜索二手、租房、工作..." value="{{ request.GET.q }}">
+                <input type="text" name="q" class="form-control" placeholder="Rechercher..." value="{{ request.GET.q }}">
             </div>
             <div class="col-sm-2">
-                <button class="btn btn-light w-100" type="submit">搜索</button>
+                <button class="btn btn-light w-100" type="submit">Rechercher</button>
             </div>
         </form>
     </div>
@@ -26,7 +26,7 @@
                 <a href="{% url 'listings:category' cat.slug %}" class="category-card d-block">
                     <div class="category-icon">{{ cat.icon }}</div>
                     <div class="cat-name">{{ cat.name }}</div>
-                    <div class="cat-count mt-1">{{ cat.listing_count }} 条</div>
+                    <div class="cat-count mt-1">{{ cat.listing_count }} annonces</div>
                 </a>
             </div>
             {% endfor %}
@@ -36,8 +36,8 @@
 
 <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="section-title mb-0">最新信息</h5>
-        <a href="{% url 'listings:list' %}" class="btn btn-outline-primary btn-sm">查看全部 →</a>
+        <h5 class="section-title mb-0">Dernières annonces</h5>
+        <a href="{% url 'listings:list' %}" class="btn btn-outline-primary btn-sm">Voir tout →</a>
     </div>
     <div class="row g-3">
         {% for listing in latest_listings %}
@@ -51,16 +51,16 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start mb-1">
                         <span class="category-badge">{{ listing.category.name }}</span>
-                        {% if listing.is_urgent %}<span class="urgent-badge">置顶</span>{% endif %}
+                        {% if listing.is_urgent %}<span class="urgent-badge">Urgent</span>{% endif %}
                     </div>
                     <div class="card-title">{{ listing.title }}</div>
                     {% if listing.price %}
                     <div class="price-tag">{{ listing.price }} €</div>
                     {% else %}
-                    <div class="price-tag text-muted">面议</div>
+                    <div class="price-tag text-muted">Sur demande</div>
                     {% endif %}
                     <div class="listing-meta mt-1">
-                        <i class="bi bi-geo-alt"></i> {{ listing.city }} · {{ listing.created_at|date:"m-d" }}
+                        <i class="bi bi-geo-alt"></i> {{ listing.city }} · {{ listing.created_at|date:"d/m" }}
                     </div>
                 </div>
                 <a href="{% url 'listings:detail' listing.slug %}" class="stretched-link"></a>
@@ -69,7 +69,7 @@
         {% empty %}
         <div class="empty-state">
             <i class="bi bi-inbox"></i>
-            <p>暂无信息</p>
+            <p>Aucune annonce pour le moment</p>
         </div>
         {% endfor %}
     </div>

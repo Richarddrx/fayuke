@@ -33,8 +33,8 @@ for d in domains:
     r = check_domain(d, key_id, key_secret)
     avail = r.get('Avail')
     if avail == 1:
-        print(f'  ✅ {d} — 可注册')
+        print(f'  ✅ {d} — Disponible')
     elif avail == 0:
-        print(f'  ❌ {d} — 已被注册')
+        print(f'  ❌ {d} — Déjà enregistré')
     else:
         print(f'  ❓ {d} — {r}')

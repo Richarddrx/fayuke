@@ -15,19 +15,19 @@ class ListingAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_at'
     actions = ['make_active', 'make_expired']
     fieldsets = [
-        ('基本信息', {'fields': ['title', 'description', 'price', 'price_negotiable', 'category']}),
-        ('联系方式', {'fields': ['contact_phone', 'contact_wechat', 'contact_email']}),
-        ('位置', {'fields': ['city', 'postal_code']}),
-        ('状态', {'fields': ['status', 'is_urgent', 'views_count']}),
+        ('Informations', {'fields': ['title', 'description', 'price', 'price_negotiable', 'category']}),
+        ('Contact', {'fields': ['contact_phone', 'contact_wechat', 'contact_email']}),
+        ('Localisation', {'fields': ['city', 'postal_code']}),
+        ('Statut', {'fields': ['status', 'is_urgent', 'views_count']}),
     ]
 
     def make_active(self, request, queryset):
         queryset.update(status='active')
-    make_active.short_description = '标记为已发布'
+    make_active.short_description = 'Marquer comme active'
 
     def make_expired(self, request, queryset):
         queryset.update(status='expired')
-    make_expired.short_description = '标记为已过期'
+    make_expired.short_description = 'Marquer comme expirée'
 
 @admin.register(ListingImage)
 class ListingImageAdmin(admin.ModelAdmin):

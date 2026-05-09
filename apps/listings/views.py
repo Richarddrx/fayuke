@@ -71,7 +71,7 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
                 ListingImage.objects.create(listing=self.object, image=img)
             except Exception:
                 pass  # skip image save failure (e.g. read-only fs)
-        messages.success(self.request, '信息发布成功！')
+        messages.success(self.request, 'Annonce publiée avec succès !')
         return response
 
     def get_success_url(self):

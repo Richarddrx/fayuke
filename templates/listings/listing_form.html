@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{% if listing %}编辑信息 - europe58{% else %}发布信息 - europe58{% endif %}{% endblock %}
+{% block title %}{% if listing %}Modifier l'annonce - europe58{% else %}Publier une annonce - europe58{% endif %}{% endblock %}
 
 {% block content %}
 <div class="container my-4">
@@ -7,15 +7,27 @@
         <div class="col-md-8">
             <div class="card p-4">
                 <h4 class="fw-bold mb-4">
-                    {% if listing %}✏️ 编辑信息{% else %}📝 发布新信息{% endif %}
+                    {% if listing %}✏️ Modifier l'annonce{% else %}📝 Publier une annonce{% endif %}
                 </h4>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
                     <div class="mb-3">
-                        <label class="form-label fw-medium" style="font-size:0.9rem;">{{ field.label }}</label>
+                        <label class="form-label fw-medium" style="font-size:0.9rem;">
+                            {% if field.name == 'title' %}Titre
+                            {% elif field.name == 'description' %}Description
+                            {% elif field.name == 'price' %}Prix (€)
+                            {% elif field.name == 'price_negotiable' %}Prix négociable
+                            {% elif field.name == 'category' %}Catégorie
+                            {% elif field.name == 'contact_phone' %}Téléphone
+                            {% elif field.name == 'contact_wechat' %}WeChat
+                            {% elif field.name == 'city' %}Ville
+                            {% elif field.name == 'postal_code' %}Code postal
+                            {% elif field.name == 'is_urgent' %}Annonce urgente
+                            {% else %}{{ field.label }}{% endif %}
+                        </label>
                         {% if field.name == 'description' %}
-                            <textarea name="{{ field.name }}" class="form-control" rows="5" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:12px;" placeholder="详细描述您的信息...">{{ field.value|default:'' }}</textarea>
+                            <textarea name="{{ field.name }}" class="form-control" rows="5" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:12px;" placeholder="Décrivez votre annonce en détail...">{{ field.value|default:'' }}</textarea>
                         {% elif field.name == 'price' %}
                             <div class="input-group">
                                 <input type="number" name="{{ field.name }}" value="{{ field.value|default:'' }}" class="form-control" style="border-radius:8px 0 0 8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="0.00">
@@ -24,27 +36,27 @@
                         {% elif field.name == 'is_urgent' %}
                             <div class="form-check form-switch mt-2">
                                 <input type="checkbox" name="{{ field.name }}" class="form-check-input" id="id_urgent" {% if field.value %}checked{% endif %} style="width:40px;height:20px;cursor:pointer;">
-                                <label class="form-check-label text-muted small" for="id_urgent">置顶显示，更快被看到</label>
+                                <label class="form-check-label text-muted small" for="id_urgent">Mettre en avant pour plus de visibilité</label>
                             </div>
                         {% elif field.name == 'price_negotiable' %}
                             <div class="form-check mt-2">
                                 <input type="checkbox" name="{{ field.name }}" class="form-check-input" id="id_negotiable" {% if field.value %}checked{% endif %}>
-                                <label class="form-check-label text-muted small" for="id_negotiable">接受议价</label>
+                                <label class="form-check-label text-muted small" for="id_negotiable">Je accepte de négocier le prix</label>
                             </div>
                         {% else %}
-                            <input type="{{ field.field.widget.input_type|default:'text' }}" name="{{ field.name }}" value="{{ field.value|default:'' }}" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="请输入{{ field.label }}">
+                            <input type="{{ field.field.widget.input_type|default:'text' }}" name="{{ field.name }}" value="{{ field.value|default:'' }}" class="form-control" style="border-radius:8px;border:1.5px solid #e2e8f0;padding:10px 14px;" placeholder="Entrez {{ field.label }}">
                         {% endif %}
                         {% if field.help_text %}<div class="form-text small">{{ field.help_text }}</div>{% endif %}
                         {% for error in field.errors %}<div class="text-danger small mt-1">{{ error }}</div>{% endfor %}
                     </div>
                     {% endfor %}
                     <div class="mb-4">
-                        <label class="form-label fw-medium" style="font-size:0.9rem;">图片（可选，最多10张）</label>
+                        <label class="form-label fw-medium" style="font-size:0.9rem;">Photos (optionnel, max 10)</label>
                         <input type="file" name="images" multiple accept="image/*" class="form-control" style="border-radius:8px;border:1.5px dashed #e2e8f0;padding:10px;background:#f8fafc;">
-                        <div class="form-text small">支持 JPG、PNG 格式</div>
+                        <div class="form-text small">Formats acceptés : JPG, PNG</div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100" style="padding:12px;">
-                        {% if listing %}保存修改{% else %}发布信息{% endif %}
+                        {% if listing %}Enregistrer{% else %}Publier l'annonce{% endif %}
                     </button>
                 </form>
             </div>

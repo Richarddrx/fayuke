@@ -6,7 +6,7 @@
 <div class="container my-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
             <li class="breadcrumb-item"><a href="{% url 'listings:category' listing.category.slug %}">{{ listing.category.name }}</a></li>
             <li class="breadcrumb-item active">{{ listing.title|truncatechars:30 }}</li>
         </ol>
@@ -42,17 +42,17 @@
                             <h4 class="fw-bold mb-2">{{ listing.title }}</h4>
                             <div class="d-flex gap-2 align-items-center">
                                 <span class="category-badge">{{ listing.category.name }}</span>
-                                {% if listing.is_urgent %}<span class="urgent-badge">置顶</span>{% endif %}
+                                {% if listing.is_urgent %}<span class="urgent-badge">Urgent</span>{% endif %}
                             </div>
                         </div>
                         {% if listing.price %}
                         <div style="font-size:1.6rem;font-weight:800;color:var(--accent);white-space:nowrap;">{{ listing.price }} €</div>
                         {% endif %}
                     </div>
-                    {% if listing.price_negotiable %}<span class="badge bg-warning bg-opacity-25 text-warning-emphasis mt-2" style="font-weight:500;">价格可议</span>{% endif %}
+                    {% if listing.price_negotiable %}<span class="badge bg-warning bg-opacity-25 text-warning-emphasis mt-2" style="font-weight:500;">Prix négociable</span>{% endif %}
                     <hr class="my-3">
                     <div class="d-flex gap-3 text-muted small mb-3">
-                        <span><i class="bi bi-eye"></i> {{ listing.views_count }} 次浏览</span>
+                        <span><i class="bi bi-eye"></i> {{ listing.views_count }} vues</span>
                         <span><i class="bi bi-clock"></i> {{ listing.created_at|date:"Y-m-d H:i" }}</span>
                         <span><i class="bi bi-geo-alt"></i> {{ listing.city }}</span>
                     </div>
@@ -63,23 +63,23 @@
 
         <div class="col-md-4">
             <div class="card p-4 contact-card">
-                <h6 class="mb-0">联系方式</h6>
+                <h6 class="mb-0">Contact</h6>
                 <hr>
                 {% if listing.contact_phone %}
                 <div class="mb-3">
-                    <div class="text-muted small mb-1"><i class="bi bi-telephone"></i> 电话</div>
+                    <div class="text-muted small mb-1"><i class="bi bi-telephone"></i> Téléphone</div>
                     <a href="tel:{{ listing.contact_phone }}" style="font-size:1.1rem;font-weight:600;color:var(--primary);">{{ listing.contact_phone }}</a>
                 </div>
                 {% endif %}
                 {% if listing.contact_wechat %}
                 <div class="mb-3">
-                    <div class="text-muted small mb-1"><i class="bi bi-chat"></i> 微信</div>
+                    <div class="text-muted small mb-1"><i class="bi bi-chat"></i> WeChat</div>
                     <div style="font-size:1rem;font-weight:500;">{{ listing.contact_wechat }}</div>
                 </div>
                 {% endif %}
                 {% if listing.contact_email %}
                 <div class="mb-3">
-                    <div class="text-muted small mb-1"><i class="bi bi-envelope"></i> 邮箱</div>
+                    <div class="text-muted small mb-1"><i class="bi bi-envelope"></i> Email</div>
                     <div>{{ listing.contact_email }}</div>
                 </div>
                 {% endif %}
@@ -92,8 +92,8 @@
 
             {% if user == listing.user %}
             <div class="d-grid gap-2 mt-3">
-                <a href="{% url 'listings:edit' listing.slug %}" class="btn btn-outline-primary">✏️ 编辑信息</a>
-                <a href="{% url 'listings:delete' listing.slug %}" class="btn btn-outline-danger">🗑️ 删除</a>
+                <a href="{% url 'listings:edit' listing.slug %}" class="btn btn-outline-primary">✏️ Modifier</a>
+                <a href="{% url 'listings:delete' listing.slug %}" class="btn btn-outline-danger">🗑️ Supprimer</a>
             </div>
             {% endif %}
         </div>

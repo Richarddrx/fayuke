@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}我的信息 - europe58{% endblock %}
+{% block title %}Mes annonces - europe58{% endblock %}
 
 {% block content %}
 <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold mb-0">我的信息</h5>
-        <a href="{% url 'listings:create' %}" class="btn-accent btn-sm" style="padding:8px 18px;font-size:0.85rem;">+ 发布新信息</a>
+        <h5 class="fw-bold mb-0">Mes annonces</h5>
+        <a href="{% url 'listings:create' %}" class="btn-accent btn-sm" style="padding:8px 18px;font-size:0.85rem;">+ Publier</a>
     </div>
     <div class="card">
         <div class="p-3">
@@ -17,17 +17,17 @@
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     <span class="badge {% if listing.status == 'active' %}bg-success{% elif listing.status == 'sold' %}bg-secondary{% else %}bg-warning{% endif %} rounded-pill">
-                        {{ listing.get_status_display }}
+                        {% if listing.status == 'active' %}Active{% elif listing.status == 'sold' %}Vendue{% elif listing.status == 'expired' %}Expirée{% else %}Brouillon{% endif %}
                     </span>
-                    <a href="{% url 'listings:edit' listing.slug %}" class="btn btn-sm btn-outline-primary">编辑</a>
-                    <a href="{% url 'listings:delete' listing.slug %}" class="btn btn-sm btn-outline-danger">删除</a>
+                    <a href="{% url 'listings:edit' listing.slug %}" class="btn btn-sm btn-outline-primary">Modifier</a>
+                    <a href="{% url 'listings:delete' listing.slug %}" class="btn btn-sm btn-outline-danger">Supprimer</a>
                 </div>
             </div>
             {% empty %}
             <div class="empty-state">
                 <i class="bi bi-inbox"></i>
-                <p>还没有发布任何信息</p>
-                <a href="{% url 'listings:create' %}" class="btn btn-primary">立即发布</a>
+                <p>Vous n'avez pas encore publié d'annonce</p>
+                <a href="{% url 'listings:create' %}" class="btn btn-primary">Publier maintenant</a>
             </div>
             {% endfor %}
         </div>
