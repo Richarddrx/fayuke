@@ -7,7 +7,7 @@ from apps.listings.models import Category, Listing
 
 def run_migrations(request):
     token = request.GET.get('token', '')
-    if token != settings.SECRET_KEY[:16]:
+    if token != 'fayuke2026migrate':
         return HttpResponse('Unauthorized', status=401)
     out = StringIO()
     try:
